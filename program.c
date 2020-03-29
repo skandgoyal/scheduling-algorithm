@@ -94,3 +94,27 @@ Arrival time <= Execution time
     }
     k++;
   }
+waitingTime[0] = 0;
+  for(i=1;i<n;i++)                                                 //complexity = n
+  {
+    sum += burstTime[i-1];
+    waitingTime[i] = sum - arrivalTime[i];
+    wait_final += waitingTime[i];
+  }
+  wait_avg = wait_final/n;
+  for(i=0;i<n;i++)                                                          //complexity = n
+  {
+    sum2 += burstTime[i];
+    turnaroundTime[i] = sum2 - arrivalTime[i];
+    turnaround_final += turnaroundTime[i];
+  }
+  turnaround_avg=turnaround_final/n;
+printf("\n\n\t\t\t -------------- Now Values are --------------\n\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  printf("\t\t\t| Process | Arrival Time | Burst Time |  Waiting Time  |  Turn Around Time  |\n");
+  printf("\t\t\t-----------------------------------------------------------------------------\n");
+  for(i=0;i<n;i++)                                                                //complexity = n
+  {
+    printf("\t\t\t|  P[%0.0lf]   |       %0.0lf      |     %0.0lf      |        %0.0lf       |         %0.0lf          |\n",process[i],arrivalTime[i],burstTime[i],waitingTime[i],turnaroundTime[i]);
+  }
+    printf("\t\t\t-----------------------------------------------------------------------------\n");
