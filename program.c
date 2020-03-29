@@ -61,3 +61,36 @@ int main()
   }
     printf("\t\t\t---------------------------------------\n");
 
+
+/*Arranging the table according to Burst time,
+Execution time and Arrival Time
+Arrival time <= Execution time
+*/
+
+
+  long int k = 1;
+  double b_time = 0;
+  for(j=0;j<n;j++)
+  {
+    b_time = b_time + burstTime[j];
+    min = burstTime[k];
+
+    for(i=k;i<n;i++)                                         //complexity = n^2
+    {
+      if((b_time >= arrivalTime[i])&&(burstTime[i]<min))
+      {
+        temp = burstTime[k];
+        burstTime[k] = burstTime[i];
+        burstTime[i] = temp;
+
+        temp = arrivalTime[k];
+        arrivalTime[k] = arrivalTime[i];
+        arrivalTime[i] = temp;
+
+        temp = process[k];
+        process[k] = process[i];
+        process[i] = temp;
+      }
+    }
+    k++;
+  }
